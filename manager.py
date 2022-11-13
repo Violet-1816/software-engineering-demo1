@@ -54,6 +54,19 @@ input amount<input type="text" name='amount'><br>
 """)
 
 target += updateStock
+
+delChecked = (f"""
+<div>
+<fieldset>
+<legend>delete checked</legend>
+<form method="post" action="delChecked.py">
+<input type="submit" value="delete checked">
+</form>
+</fieldset>
+</div>
+""")
+
+target += delChecked
 title = f"manager"
 
 with open("template.html",'rb') as fp:

@@ -37,17 +37,17 @@ def updateStockAmount(sid, amount):
     conn.commit()
     return True
 
-def delChecked(uid):
-    sql = "select cid, sid, amount from cart where uid = %s and checkout = 1"
-    cur.execute(sql, (uid))
+def delChecked():
+    sql = "select cid, sid, amount from cart where checkout = 1 and complete = 0"
+    cur.execute(sql)
     records = cur.fetchall()
-    for (sid, amount) in records:
+    for (cid, sid, amount) in records:
         tempsql = "update stock set amount = amount - %s where sid = %s"
         cur.execute(tempsql, (amount, sid))
         conn.commit()
-    for(cid) in records:
+    for(cid, sid, amount) in records:
         sql2 = "update cart set complete = 1 where cid = %s"
-        cur.execute(sql2, (cid))
+        cur.execute(sql2, ([cid]))
         conn.commit()
     return True
 
@@ -80,3 +80,9 @@ def getStockName(sid):
     cur.execute(sql, (sid))
     records = cur.fetchall()
     return records
+
+def checkoutCart(cid):
+    sql = "update cart set checkout = 1 where cid = %s"
+    cur.execute(sql, ([cid]))
+    conn.commit()
+    return True

@@ -52,6 +52,20 @@ input amount<input type="text" name='amount'><br>
 """)
 
 target += updateCart
+
+checkoutCart = (f"""
+<div>
+<fieldset>
+<legend>delete checked</legend>
+<form method="post" action="checkoutCart.py">
+input cart id<input type="text" name='cid'><br>
+<input type="submit">
+</form>
+</fieldset>
+</div>
+""")
+
+target += checkoutCart
 title = f"user"
 
 with open("template.html",'rb') as fp:
