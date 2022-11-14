@@ -56,7 +56,7 @@ target += updateCart
 checkoutCart = (f"""
 <div>
 <fieldset>
-<legend>delete checked</legend>
+<legend>checkout</legend>
 <form method="post" action="checkoutCart.py">
 input cart id<input type="text" name='cid'><br>
 <input type="submit">
